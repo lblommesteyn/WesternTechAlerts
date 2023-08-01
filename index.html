@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Western Tech Alerts! Sign Up Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* ... (paste the CSS styles here) ... */
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <form id="userForm" class="techy-blue">
+                <h1>Western Tech Alerts!</h1>
+                <div class="color-options">
+                    <button type="button" id="toggleColorBtn" onclick="toggleTechyColor()">Try Me :)</button>
+                </div>
+
+                <fieldset>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="user_name">
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="mail" name="user_email">
+
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="user_phone">
+
+                    <label for="program">Program:</label>
+                    <select id="program" name="user_program">
+                        <option value="software_engineering">Software Engineering</option>
+                        <option value="engineering_other">Engineering (Other)</option>
+                        <option value="computer_science">Computer Science</option>
+                        <option value="business_management">Business Management (BMOS)</option>
+                        <option value="ivey">Ivey Business School</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <label>Year:</label>
+                    <select id="year" name="user_year">
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4+ Year(s)</option>
+                    </select>
+                </fieldset>
+
+                <button type="submit">Keep me up to date!</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentColorIndex = 0;
+        const colors = ['techy-blue', 'techy-pink', 'techy-aqua'];
+
+        document.getElementById('userForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission and page reload
+
+            const fullName = document.getElementById('name').value;
+            const phoneNumber = document.getElementById('phone').value;
+            const program = document.getElementById('program').value;
+            const year = document.getElementById('year').value;
+
+            // You can now use this data to perform further processing (e.g., save it to a database, send it to a server, etc.)
+            console.log('Full Name:', fullName);
+            console.log('Phone Number:', phoneNumber);
+            console.log('Program:', program);
+            console.log('Year:', year);
+
+            // Optionally, you can clear the form after submission
+            document.getElementById('userForm').reset();
+        });
+
+        function toggleTechyColor() {
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            const userForm = document.getElementById('userForm');
+            userForm.className = '';
+            userForm.classList.add(colors[currentColorIndex]);
+        }
+    </script>
+
+</body>
+</html>
