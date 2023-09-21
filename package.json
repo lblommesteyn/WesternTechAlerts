@@ -1,5 +1,6 @@
 {
   "name": "westerntechalerts",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
@@ -14,6 +15,6 @@
     "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "mongoose": "^7.4.1",
-    "mysql": "^2.18.1"
+    "mysql2": "^3.6.1"
   }
 }

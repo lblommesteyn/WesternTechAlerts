@@ -57,23 +57,52 @@
         let currentColorIndex = 0;
         const colors = ['techy-blue', 'techy-pink', 'techy-aqua'];
 
+        // document.getElementById('userForm').addEventListener('submit', function (event) {
+        //     event.preventDefault(); // Prevent form submission and page reload
+
+        //     const fullName = document.getElementById('name').value;
+        //     const phoneNumber = document.getElementById('phone').value;
+        //     const program = document.getElementById('program').value;
+        //     const year = document.getElementById('year').value;
+
+        //     // You can now use this data to perform further processing (e.g., save it to a database, send it to a server, etc.)
+        //     console.log('Full Name:', fullName);
+        //     console.log('Phone Number:', phoneNumber);
+        //     console.log('Program:', program);
+        //     console.log('Year:', year);
+
+        //     // Optionally, you can clear the form after submission
+        //     document.getElementById('userForm').reset();
+        // });
+
         document.getElementById('userForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission and page reload
-
-            const fullName = document.getElementById('name').value;
-            const phoneNumber = document.getElementById('phone').value;
-            const program = document.getElementById('program').value;
-            const year = document.getElementById('year').value;
-
-            // You can now use this data to perform further processing (e.g., save it to a database, send it to a server, etc.)
-            console.log('Full Name:', fullName);
-            console.log('Phone Number:', phoneNumber);
-            console.log('Program:', program);
-            console.log('Year:', year);
-
-            // Optionally, you can clear the form after submission
-            document.getElementById('userForm').reset();
+            event.preventDefault();
+        
+            const formData = new FormData(event.target);
+            const user = {
+            fullName: formData.get('user_name'),
+            phoneNumber: formData.get('user_phone'),
+            program: formData.get('user_program'),
+            year: formData.get('user_year'),
+            };
+        
+            // Send the form data to the backend server
+            fetch('http://localhost:3000/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user),
+            })
+            .then((response) => response.text())
+            .then((data) => {
+                console.log(data);
+                // Optionally, you can clear the form after successful submission
+                document.getElementById('userForm').reset();
+            })
+            .catch((error) => console.error('Error:', error));
         });
+  
 
         function toggleTechyColor() {
             currentColorIndex = (currentColorIndex + 1) % colors.length;
